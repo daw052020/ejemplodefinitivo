@@ -1,0 +1,36 @@
+<html>
+<head>
+<script>
+function MostrarProvincia(str) {
+    if (str == "") {
+        document.getElementById("txtResultado").innerHTML = "<b>Seleccione una provincia...</b>";
+        return;
+    } else {
+     
+        var xmlhttp = new XMLHttpRequest();
+        
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("txtResultado").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","getprovincia.php?q="+str,true);
+        xmlhttp.send();
+    }
+}
+</script>
+</head>
+<body>
+
+<form>
+<select name="provincia" onchange="MostrarProvincia(this.value)">
+  <option value="">Selecciona una Provincia:</option>
+  <option value="Toledo">Toledo</option>
+  <option value="Ciudad Real">Ciudad Real</option>
+ </select>
+</form>
+<br>
+<div id="txtResultado"><b>Seleccione una provincia...</b></div>
+
+</body>
+</html>
